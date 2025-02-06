@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhkwt2vnugqhx"]
+
+[ext_resource type="Script" path="res://Script/enemy_bullet.gd" id="1_mblki"]
+[ext_resource type="PackedScene" uid="uid://dgdefgqiksvoe" path="res://scene/kill_zone.tscn" id="1_rwcut"]
+[ext_resource type="Texture2D" uid="uid://bblglihubk8dk" path="res://Asset/Laser_Bullets/02.png" id="2_xyct7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_468hn"]
+size = Vector2(17, 29)
+
+[node name="EnemyBullet" type="Node2D"]
+script = ExtResource("1_mblki")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_xyct7")
+
+[node name="KillZone" parent="." instance=ExtResource("1_rwcut")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_468hn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpsavptkjrrc6"]
+[gd_scene load_steps=9 format=3 uid="uid://cpsavptkjrrc6"]
 
 [ext_resource type="Script" path="res://Script/game.gd" id="1_soox2"]
 [ext_resource type="PackedScene" uid="uid://byca0ommxxu5e" path="res://scene/player.tscn" id="1_vh8uj"]
@@ -8,62 +8,9 @@
 [ext_resource type="Script" path="res://Script/UI.gd" id="5_5clf3"]
 [ext_resource type="FontFile" uid="uid://o14ldk8xt1q5" path="res://Asset/fonts/PixelOperator8.ttf" id="5_thqau"]
 [ext_resource type="Script" path="res://Script/score_label.gd" id="7_trvyh"]
-[ext_resource type="PackedScene" uid="uid://c2thbxtdaumt4" path="res://scene/pause_menu.tscn" id="9_cgdkl"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_soox2")
-
-[node name="Block" type="Node" parent="."]
-
-[node name="Right_Wall" parent="Block" instance=ExtResource("2_7k7mj")]
-position = Vector2(597, 962)
-rotation = -1.5708
-collision_layer = 15
-collision_mask = 15
-
-[node name="Left_Wall" parent="Block" instance=ExtResource("2_7k7mj")]
-position = Vector2(2, 1001)
-rotation = 1.54865
-collision_layer = 15
-collision_mask = 15
-
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_5clf3")
-
-[node name="ScoreLabel" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 5.347
-anchor_right = 15.005
-anchor_bottom = 30.919
-offset_left = 27.0
-offset_top = 8.12
-offset_right = -471.2
-offset_bottom = -998.76
-grow_horizontal = 0
-theme_override_fonts/font = ExtResource("5_thqau")
-text = "Score: 0"
-script = ExtResource("7_trvyh")
-
-[node name="health_bar" type="ProgressBar" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 5.345
-anchor_right = 15.0
-anchor_bottom = 30.875
-offset_left = -1.0
-offset_top = 995.2
-offset_right = -1.00006
-offset_bottom = 2.99988
-value = 100.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
-
-[node name="PauseMenu" parent="UI/CanvasLayer" instance=ExtResource("9_cgdkl")]
 
 [node name="Camera" type="Node" parent="."]
 
@@ -81,4 +28,48 @@ health_bar = NodePath("../../UI/health_bar")
 [node name="EnemySpawner" parent="." instance=ExtResource("4_6h0cm")]
 position = Vector2(302, 723)
 
+[node name="Block" type="Node" parent="."]
+
+[node name="Right_Wall" parent="Block" instance=ExtResource("2_7k7mj")]
+position = Vector2(604, 12)
+rotation = -1.5708
+
+[node name="Left_Wall" parent="Block" instance=ExtResource("2_7k7mj")]
+position = Vector2(-0.999969, -3)
+rotation = 1.54865
+
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_gfw4c")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_5clf3")
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 5.347
+anchor_right = 15.005
+anchor_bottom = 30.919
+offset_left = 6.0
+offset_top = 8.12
+offset_right = -492.2
+offset_bottom = -998.76
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("5_thqau")
+text = "Score: 0"
+script = ExtResource("7_trvyh")
+
+[node name="health_bar" type="ProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 5.345
+anchor_right = 15.0
+anchor_bottom = 30.875
+offset_left = -1.0
+offset_top = 995.2
+offset_right = -1.00006
+offset_bottom = 2.99988
+value = 100.0

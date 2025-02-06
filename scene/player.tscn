@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://byca0ommxxu5e"]
+[gd_scene load_steps=9 format=3 uid="uid://byca0ommxxu5e"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_23jgv"]
 [ext_resource type="Texture2D" uid="uid://uvotgvjt4f8j" path="res://Asset/Ship/SpaceShipSprites.png" id="1_p1i2s"]
+[ext_resource type="PackedScene" uid="uid://dvch2stp1hqos" path="res://scene/bullet.tscn" id="2_543p0"]
+[ext_resource type="AudioStream" uid="uid://dlf6qnjm34bt5" path="res://Asset/Sound/Laser Shot Player.wav" id="4_5imhx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixo1a"]
 atlas = ExtResource("1_p1i2s")
@@ -19,15 +21,32 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hy5fw"]
-size = Vector2(21.5, 42.75)
+size = Vector2(22.75, 46)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_00twm"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("4_5imhx")
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_23jgv")
+bullet_scene = ExtResource("2_543p0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.7, 1.7)
 sprite_frames = SubResource("SpriteFrames_riq0x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3.625)
+z_index = 1
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_hy5fw")
+
+[node name="Weapon_Right" type="Marker2D" parent="."]
+position = Vector2(16, -2)
+
+[node name="Weapon_Left" type="Marker2D" parent="."]
+position = Vector2(-16, -2)
+
+[node name="LaserShotPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_00twm")
+volume_db = 10.0

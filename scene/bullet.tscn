@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvch2stp1hqos"]
+
+[ext_resource type="Texture2D" uid="uid://c5f1kjaqrtwcv" path="res://Asset/Laser_Bullets/01.png" id="1_3epsp"]
+[ext_resource type="Script" path="res://Script/bullet.gd" id="1_6ux5x"]
+[ext_resource type="PackedScene" uid="uid://dgdefgqiksvoe" path="res://scene/kill_zone.tscn" id="3_x8jqo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqq"]
+size = Vector2(13, 30)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_6ux5x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("1_3epsp")
+
+[node name="KillZone" parent="." instance=ExtResource("3_x8jqo")]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_pupqq")
